@@ -59,7 +59,7 @@ export CPPPATH="$CPATH"
 # Install meteor
 #
 echo "-----> Installing meteor"
-curl -sS https://install.meteor.com | HOME="$METEOR_DIR" /bin/sh
+HOME="$METEOR_DIR" ./bin/install-meteor
 METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
 
 #
@@ -77,7 +77,7 @@ BUNDLE_DEST=`mktemp -d "$BUILDPACK_DIR/build-XXXX"`
 # Also remember to use 'heroku stack:set cedar-14' to allow certain recompiled
 # packages to use the newer version memcpy that ships with a more recent version
 # of glibc (contained in cedar-14)
-if [ -n "${BUILDPACK_PRELAUNCH_METEOR+1}" ]; then 
+if [ -n "${BUILDPACK_PRELAUNCH_METEOR+1}" ]; then
 echo "-----> Pre-launching Meteor to create packages assets and prevent bundling from failing"
     HOME=$METEOR_DIR timeout -s9 60 $METEOR --settings settings.json || true
 fi
