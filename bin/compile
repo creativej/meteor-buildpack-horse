@@ -59,9 +59,11 @@ export CPPPATH="$CPATH"
 # Install meteor
 #
 echo "-----> Installing meteor"
-HOME="$METEOR_DIR" ./bin/install-meteor
+HOME="$METEOR_DIR" $BUILDPACK_DIR/bin/install-meteor
 METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
+export PATH=$PATH:$METEOR_DIR/.meteor
 
+which meteor
 #
 # Build the meteor app!
 #
